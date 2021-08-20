@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,30 @@ namespace UnoForms.Models
     {
         public PlayingCard CardType { get; set; }
 
+  
+
         public PictureBox pBox_Main { get; set; }
         private Point OriginalLocation { get; set; }
         private Point AnimationEndLocation { get; set; }
+
+        public int AnimationMovementSpeed { get; set; }
+        public int IndexInHand { get; set; }
+
+        private int _xPos { get; set; }
+
+        public int xPos
+        {
+            get { return _xPos; }
+            set { _xPos = value;  ChangeLocation(); }
+        }
+
+        private int _yPos { get; set; }
+
+        public int yPos
+        {
+            get { return _yPos; }
+            set { _yPos = value; ChangeLocation(); }
+        }
 
         private Point MouseDownLocation { get; set; }
         private Control ParentControl { get; set; }
@@ -101,10 +123,59 @@ namespace UnoForms.Models
 
         }
 
+        public void RemoveCard()
+        {
+            ParentControl.Controls.Remove(pBox_Main);
+        }
+
+        public void ChangeCardLocation(Point p, bool teleport)
+        {
+            OriginalLocation = p;
+            _xPos = p.X;
+            _yPos = p.Y;
+
+            if (teleport)
+            {
+                pBox_Main.Location = p;
+            }
+        }
+
+        public void ChangeCardLocation(int x, int y, bool teleport)
+        {
+            OriginalLocation = new Point(x, y);
+            _xPos = x;
+            _yPos = y;
+
+            if (teleport)
+            {
+                pBox_Main.Location = new Point(x, y);
+            }
+        }
+
+        private void ChangeLocation()
+        {
+            //pBox_Main.Location = new Point(_xPos, _yPos);
+            OriginalLocation = new Point(_xPos, _yPos);
+        }
+
         private void TickTimer_Tick(object sender, EventArgs e)
         {
             int newY;
+
             if (IsDragging) return;
+
+
+            if(pBox_Main.Location.X > OriginalLocation.X)
+            {
+                pBox_Main.Location = new Point(pBox_Main.Location.X - 1, pBox_Main.Location.Y);
+            } else if(pBox_Main.Location.X < OriginalLocation.X)
+            {
+                pBox_Main.Location = new Point(pBox_Main.Location.X + 1, pBox_Main.Location.Y);
+            }
+
+            
+
+            // Y AXIS
             if (SelectedAnimationEnabled)
             {
                 newY = pBox_Main.Location.Y - 2;

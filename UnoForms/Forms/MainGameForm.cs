@@ -19,27 +19,42 @@ namespace UnoForms.Forms
         private Label lbl { get; set; }
         private GameControllerSinglePlayer controller { get; set; }
 
+        // The playing character's hand. Show the card face up
+        private List<PlayingCardControl> LocalHand { get; set; }
+
+        // The opponent's hand. Show the cards face down
+        private List<PlayingCardControl> RemoteHand { get; set; }
+
+        private int PlayingPanelMidSpot { get; set; }
+        private int CardsSpacing = 40;
+        private int LocalHandYPos { get; set; }
+
         public MainGameForm()
         {
             //this.TransparencyKey = Color.Transparent;
             this.AllowTransparency = true;
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             this.BackColor = Color.Transparent;
+            this.Paint += testPaint;
             InitializeComponent();
             CardControl.InitializeCards();
+            controller = new GameControllerSinglePlayer();
+            LocalHand = new List<PlayingCardControl>();
+            PlayingPanelMidSpot = panel_PlayingArea.Width / 2;
+            LocalHandYPos = this.Height - Constants.PlayingCardHeight + 70;
             //CreateTestCard();
 
             lbl = new Label();
             lbl.Location = new Point(50, 50);
-            pictureBox1.Controls.Add(lbl);
+            //pictureBox1.Controls.Add(lbl);
             lbl.ForeColor = Color.White;
             this.KeyDown += PressKey;
-            ShowDeck();
-            pictureBox1.Visible = false;
+          
+            //pictureBox1.Visible = false;
             PictureBox deck = new PictureBox();
 
-            deck.Location = new Point(pictureBox1.Width - 300, pictureBox1.Height / 2);
-            deck.Size = new Size(100, 150);
+            //deck.Location = new Point(pictureBox1.Width - 300, pictureBox1.Height / 2);
+            //deck.Size = new Size(100, 150);
 
             Bitmap bmp = new Bitmap(100, 150);
             Bitmap src = Properties.Resources.deck_100x150;
@@ -58,17 +73,99 @@ namespace UnoForms.Forms
             deck.Image = src;
             deck.SizeMode = PictureBoxSizeMode.StretchImage;
             deck.BackColor = Color.Transparent;
-            pictureBox1.Controls.Add(deck);
+            //pictureBox1.Controls.Add(deck);
 
 
         }
+
+        private void testPaint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        public void RefreshLocalCardsVisual(List<PlayingCard> cards)
+        {
+
+        }
+
+        private void ReassignLocalHandIndexes()
+        {
+            for (int i = 0; i < LocalHand.Count; i++)
+            {
+                LocalHand[i].IndexInHand = i;
+            }
+        }
+
+        public void RemoveCardFromHand(int index)
+        {
+
+            for (int i = 0; i < LocalHand.Count; i++)
+            {
+                if(i < index)
+                {
+                    LocalHand[i].xPos = LocalHand[i].xPos + 20;
+                } else if(i > index)
+                {
+                    LocalHand[i].xPos = LocalHand[i].xPos - 20;
+                }
+            }
+
+         
+            
+            LocalHand[index].RemoveCard();
+            LocalHand[index] = null;
+            LocalHand.RemoveAt(index);
+
+            ReassignLocalHandIndexes();
+
+            
+        }
+
+        public void AddCardToHand(PlayingCard card)
+        {
+            int xPos = 0;
+            int yPos = LocalHandYPos;
+
+            PlayingCardControl pcc = new PlayingCardControl(card,
+                panel_PlayingArea, new Point(xPos, yPos), 2);
+
+            if (LocalHand.Count <= 0)
+            {
+                xPos = PlayingPanelMidSpot - pcc.pBox_Main.Width / 2;
+                
+            } else
+            {
+                for (int i = 0; i < LocalHand.Count; i++)
+                {
+                    LocalHand[i].ChangeCardLocation(LocalHand[i].xPos - CardsSpacing / 2,
+                        LocalHand[i].yPos, true);
+
+                }
+
+                xPos = LocalHand[LocalHand.Count - 1].pBox_Main.Location.X + CardsSpacing;
+            }
+
+            pcc.ChangeCardLocation(xPos, yPos, true);
+
+            
+           
+
+            LocalHand.Add(pcc);
+
+            
+        }
+  
 
         private void PressKey(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.V)
             {
-                controller.PullCardFromDeck();
-                lbl.Text = controller.MainDeck.Count.ToString();
+                AddCardToHand(controller.PullCardFromDeck());
+            }
+
+            if (e.KeyCode == Keys.B)
+            {
+                RemoveCardFromHand(4);
             }
         }
 
@@ -90,7 +187,7 @@ namespace UnoForms.Forms
             pb.SizeMode = PictureBoxSizeMode.StretchImage;
             pb.Image = CardControl.GetCardTexture(CardColor.Green, CardSeed.Four);
 
-            pictureBox1.Controls.Add(pb);
+            //pictureBox1.Controls.Add(pb);
             
         }
 

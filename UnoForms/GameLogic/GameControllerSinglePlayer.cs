@@ -33,7 +33,10 @@ namespace UnoForms.GameLogic
                     MainDeck.Add(new PlayingCard((CardColor)c, (CardSeed)s));
                 }
             }
+            
         }
+        
+        
 
         public PlayingCard PullCardFromDeck()
         {

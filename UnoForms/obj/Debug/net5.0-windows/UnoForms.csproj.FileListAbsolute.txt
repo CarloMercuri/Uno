@@ -5,8 +5,9 @@ C:\dev\hoved\UnoForms\UnoForms\bin\Debug\net5.0-windows\UnoForms.runtimeconfig.d
 C:\dev\hoved\UnoForms\UnoForms\bin\Debug\net5.0-windows\UnoForms.dll
 C:\dev\hoved\UnoForms\UnoForms\bin\Debug\net5.0-windows\ref\UnoForms.dll
 C:\dev\hoved\UnoForms\UnoForms\bin\Debug\net5.0-windows\UnoForms.pdb
-C:\dev\hoved\UnoForms\UnoForms\obj\Debug\net5.0-windows\UnoForms.csprojAssemblyReference.cache
 C:\dev\hoved\UnoForms\UnoForms\obj\Debug\net5.0-windows\UnoForms.Form1.resources
+C:\dev\hoved\UnoForms\UnoForms\obj\Debug\net5.0-windows\UnoForms.Forms.MainGameForm.resources
+C:\dev\hoved\UnoForms\UnoForms\obj\Debug\net5.0-windows\UnoForms.Forms.StartMenu.resources
 C:\dev\hoved\UnoForms\UnoForms\obj\Debug\net5.0-windows\UnoForms.Properties.Resources.resources
 C:\dev\hoved\UnoForms\UnoForms\obj\Debug\net5.0-windows\UnoForms.csproj.GenerateResource.cache
 C:\dev\hoved\UnoForms\UnoForms\obj\Debug\net5.0-windows\UnoForms.GeneratedMSBuildEditorConfig.editorconfig
@@ -17,5 +18,4 @@ C:\dev\hoved\UnoForms\UnoForms\obj\Debug\net5.0-windows\UnoForms.dll
 C:\dev\hoved\UnoForms\UnoForms\obj\Debug\net5.0-windows\ref\UnoForms.dll
 C:\dev\hoved\UnoForms\UnoForms\obj\Debug\net5.0-windows\UnoForms.pdb
 C:\dev\hoved\UnoForms\UnoForms\obj\Debug\net5.0-windows\UnoForms.genruntimeconfig.cache
-C:\dev\hoved\UnoForms\UnoForms\obj\Debug\net5.0-windows\UnoForms.Forms.MainGameForm.resources
-C:\dev\hoved\UnoForms\UnoForms\obj\Debug\net5.0-windows\UnoForms.Forms.StartMenu.resources
+C:\dev\hoved\UnoForms\UnoForms\obj\Debug\net5.0-windows\UnoForms.csprojAssemblyReference.cache

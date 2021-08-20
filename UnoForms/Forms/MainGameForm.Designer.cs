@@ -29,21 +29,9 @@ namespace UnoForms.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainGameForm));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel_PlayingArea = new System.Windows.Forms.Panel();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(-2, -2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1615, 944);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // panel1
             // 
@@ -54,24 +42,29 @@ namespace UnoForms.Forms
             this.panel1.Size = new System.Drawing.Size(271, 944);
             this.panel1.TabIndex = 1;
             // 
+            // panel_PlayingArea
+            // 
+            this.panel_PlayingArea.Location = new System.Drawing.Point(-4, -2);
+            this.panel_PlayingArea.Name = "panel_PlayingArea";
+            this.panel_PlayingArea.Size = new System.Drawing.Size(1615, 944);
+            this.panel_PlayingArea.TabIndex = 2;
+            // 
             // MainGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1874, 936);
+            this.Controls.Add(this.panel_PlayingArea);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pictureBox1);
             this.Name = "MainGameForm";
             this.Text = "MainGameForm";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel_PlayingArea;
     }
 }
